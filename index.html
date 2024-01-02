@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="profile">
+            <img id="profileImage" src="images/me.jpeg" alt="Your Name">
+            <h1 id="name">Nicholas Leong</h1>
+            <h2 id="jobTitle">Student </h2>
+            <p id="description">Hello! I am Nicholas Leong, a Year 2 student currently studying Diploma of Digital
+                Design & Development in Republic Polytechnic.</p>
+            <p id="age">Age: <span id="ageCounter">18</span></p>
+            <button class="play">Play</button>
+            <button class="pause">Pause</button>
+            <button class="restart">Restart</button>
+        </div>
+    </div>
+
+    <script>
+        var Timeline = anime.timeline({
+            autoplay: false
+        });
+
+        Timeline
+            .add({
+                targets: '#name, #jobTitle, #description',
+                translateY: [100, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(200),
+            })
+            .add({
+                targets: '#profileImage',
+                translateY: -25,
+                rotate: 360,
+                opacity: [0, 1],
+                delay: 500
+            }, '-=1200')
+            .add({
+                targets: '#ageCounter',
+                innerHTML: [0, 18],
+                easing: 'linear',
+                round: 1,
+                duration: 2000
+            }, '-=1500');
+
+        document.querySelector('.play').onclick = Timeline.play;
+        document.querySelector('.pause').onclick = Timeline.pause;
+        document.querySelector('.restart').onclick = Timeline.restart;
+    </script>
+</body>
+</html>
